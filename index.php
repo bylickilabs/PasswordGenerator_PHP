@@ -1,8 +1,5 @@
 <?php
 
-// 
-
-// --- PHP: Passwort-Generator Backend ---
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header('Content-Type: application/json; charset=utf-8');
     $len = isset($_POST['length']) ? max(8, min(40, intval($_POST['length']))) : 16;
@@ -26,9 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <title>Passwort Generator</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-	    
-	<!-- Orbitron Font -->
+	
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
     <style>
         html, body { height: 100%; }
@@ -139,7 +134,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         .pw-strength .mittel { color: #ffe600; text-shadow: 0 0 7px #ffd60077;}
         .pw-strength .schwach { color: #ff5577; text-shadow: 0 0 7px #ff255577;}
 
-        /* --- Animierter Slider --- */
         .slider-wrap {
             margin: 0.5rem 0 1.3rem 0; width: 100%; height: 54px; position: relative;
             display: flex; align-items: flex-end; justify-content: flex-start;
@@ -155,7 +149,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             width: 100%; height: 15px; background: transparent;
             accent-color: #14f1ff; position: relative; z-index: 1;
             cursor: pointer;
-            /* Entfernt Standard-Styling */
             -webkit-appearance: none; appearance: none; outline: none;
         }
         #len::-webkit-slider-runnable-track {
@@ -198,7 +191,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         #len::-webkit-slider-thumb { margin-top: -10px; }
         #len::-ms-tooltip { display: none; }
-        /* --- Länge-Anzeige direkt über dem Thumb --- */
         .slider-val {
             position: absolute;
             top: -2.6em; left: 0;
@@ -296,9 +288,6 @@ function disableselect(_0x2929x2){return false;}function reEnable(){return true;
 </script>
 
 
-
-		
-<!-- Fixiertes, großes Logo oben links, ohne Rahmen, abgerundete Ecken -->
 <div id="logo-panel" style="position:fixed;top:34px;left:40px;z-index:100;">
   <img
     id="logo-img"
@@ -308,14 +297,11 @@ function disableselect(_0x2929x2){return false;}function reEnable(){return true;
 </div>
 
 
-
-    <!-- GitHub Social Icon -->
     <a class="github-fix" href="https://github.com/bylickilabs" target="_blank" title="GitHub">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.6 0-12 5.4-12 12 0 5.3 3.4 9.7 8.2 11.2.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.5-1.2-1.1-1.6-1.1-1.6-.9-.6.1-.6.1-.6 1 .1 1.6 1 1.6 1 .9 1.6 2.4 1.1 3 .9.1-.7.3-1.1.6-1.4-2.6-.3-5.2-1.3-5.2-5.7 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.6 11.6 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.5-2.6 5.4-5.2 5.7.3.3.7.9.7 1.9v2.8c0 .3.2.7.8.6C20.6 22 24 17.6 24 12.3c0-6.6-5.4-12-12-12"></path></svg>
     </a>
 	
-	
-    <!-- Overlay -->
+
     <div class="container neon-border">
         <h1 class="neon-text">Passwort Generator</h1>
         <div class="row">
@@ -327,8 +313,7 @@ function disableselect(_0x2929x2){return false;}function reEnable(){return true;
             <span class="pw-strength" id="pw-strength"></span>
         </div>
 		
-		
-        <!-- Slider mit animierter Länge-Anzeige -->
+
         <div class="slider-wrap">
             <div class="slider-container">
                 <input type="range" min="8" max="40" value="16" id="len" name="length" autocomplete="off" />
@@ -336,8 +321,7 @@ function disableselect(_0x2929x2){return false;}function reEnable(){return true;
             </div>
         </div>
         
-		
-		<!-- Generator-Form -->
+
         <form id="pw-form" class="pw-form" autocomplete="off">
             <label><input type="checkbox" name="lowercase" checked> Kleinbuchstaben</label>
             <label><input type="checkbox" name="uppercase" checked> Großbuchstaben</label>
@@ -351,14 +335,12 @@ function disableselect(_0x2929x2){return false;}function reEnable(){return true;
 
     <script>
         
-		
-		// --- Animierte Slider-Länge über Thumb ---
+
         const slider = document.getElementById('len');
         const sliderVal = document.getElementById('sliderVal');
         function updateSliderLabel(anim) {
             
-			
-			// Position des Thumb berechnen
+
             let min = parseInt(slider.min), max = parseInt(slider.max), val = parseInt(slider.value);
             let percent = (val - min) / (max - min);
             let trackWidth = slider.offsetWidth - 30;
@@ -376,8 +358,7 @@ function disableselect(_0x2929x2){return false;}function reEnable(){return true;
         window.addEventListener('resize', updateSliderLabel);
         updateSliderLabel();
 
-        
-		// --- Passwort-Generator: AJAX, Copy, Strength ---
+
         function pwStrength(pw) {
             if (!pw) return '';
             let hasLower = /[a-z]/.test(pw), hasUpper = /[A-Z]/.test(pw), hasNum = /\d/.test(pw), hasSym = /[^a-zA-Z0-9]/.test(pw);
@@ -401,15 +382,13 @@ function disableselect(_0x2929x2){return false;}function reEnable(){return true;
             generatePW();
         });
         
-		
-		// Initial PW
+
         window.addEventListener('DOMContentLoaded', function(){
             generatePW();
             updateSliderLabel();
         });
 
-        
-		// --- Copy ---
+
         const copyBtn = document.getElementById('copyBtn');
         copyBtn.addEventListener('click', function(){
             const val = document.getElementById('out').value;
@@ -426,7 +405,7 @@ function disableselect(_0x2929x2){return false;}function reEnable(){return true;
 		img.style.width = size + "px";
 		img.style.height = size + "px";
 		img.style.borderRadius = (size / 3.8) + "px";
-	}
+		}
 	
     </script>
 </body>
