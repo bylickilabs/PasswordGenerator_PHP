@@ -1,32 +1,41 @@
-<script>
-(function(){
-  document.addEventListener('\x63\x6F\x6E\x74\x65\x78\x74\x6D\x65\x6E\x75',
-  
-  function(e){e['\x70\x72\x65\x76\x65\x6E\x74\x44\x65\x66\x61\x75\x6C\x74']();});
-  document.addEventListener('\x6B\x65\x79\x64\x6F\x77\x6E',
-  
-  function(e){
-    if(e['\x6B\x65\x79']==='\x46\x31\x32'){e['\x70\x72\x65\x76\x65\x6E\x74\x44\x65\x66\x61\x75\x6C\x74']();}
-    if(e['\x63\x74\x72\x6C\x4B\x65\x79']&&e['\x73\x68\x69\x66\x74\x4B\x65\x79']&&['\x49','\x4A','\x43'].indexOf(e['\x6B\x65\x79'].toUpperCase())>-1){e['\x70\x72\x65\x76\x65\x6E\x74\x44\x65\x66\x61\x75\x6C\x74']();}
-    if(e['\x63\x74\x72\x6C\x4B\x65\x79']&&e['\x6B\x65\x79'].toLowerCase()==='\x75'){e['\x70\x72\x65\x76\x65\x6E\x74\x44\x65\x66\x61\x75\x6C\x74']();}
-    if(e['\x63\x74\x72\x6C\x4B\x65\x79']&&e['\x6B\x65\x79'].toLowerCase()==='\x73'){e['\x70\x72\x65\x76\x65\x6E\x74\x44\x65\x66\x61\x75\x6C\x74']();}
+  document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
   });
-  (function(){
-    let _0x1234=false;
-    function _0xabc(){if(!_0x1234){_0x1234=true;}}
-    function _0xbcd(){
-      const _0xe=new Image();
-      Object.defineProperty(_0xe,'id',{get:function(){_0xabc();}});
-      console['\x6C\x6F\x67'](_0xe);
+
+  // Tastenkombinationen abfangen
+  document.addEventListener('keydown', function(e) {
+    // F12
+    if (e.key === 'F12') {
+      e.preventDefault();
+      return false;
     }
-    function _0xcde(){
-      const _0xth=160;
-      let _0xs=new Date();
-      debugger;
-      let _0xe=new Date();
-      if(_0xe-_0xs>_0xth){_0xabc();}
+
+    // STRG+SHIFT+I/J/C
+    if (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key.toUpperCase())) {
+      e.preventDefault();
+      return false;
     }
-    setInterval(function(){_0xbcd();_0xcde();},1000);
-  })();
-})();
-</script>
+
+    // STRG+U (Seitenquelltext)
+    if (e.ctrlKey && e.key.toLowerCase() === 'u') {
+      e.preventDefault();
+      return false;
+    }
+
+    // STRG+S (Speichern)
+    if (e.ctrlKey && e.key.toLowerCase() === 's') {
+      e.preventDefault();
+      return false;
+    }
+  });
+
+  // DevTools-Detection über Dimensionsprüfung
+  const detectDevTools = () => {
+    const threshold = 160;
+    if (window.outerWidth - window.innerWidth > threshold ||
+        window.outerHeight - window.innerHeight > threshold) {
+      document.body.innerHTML = "<h1 style='color: red; text-align: center;'>Entwicklertools verboten</h1>";
+    }
+  };
+
+  setInterval(detectDevTools, 1000);
